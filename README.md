@@ -12,3 +12,6 @@ helm upgrade -i airflow airflow/airflow \
   --create-namespace \
   --set apiServer.service.type=LoadBalancer
 ```
+
+Default login: `admin` / `admin`
+
