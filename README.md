@@ -9,5 +9,6 @@ Install airflow:
 ```bash
 helm upgrade -i airflow airflow/airflow \
   --namespace airflow \
-  --create-namespace
+  --create-namespace \
+  --set apiServer.service.type=LoadBalancer
 ```
