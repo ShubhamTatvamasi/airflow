@@ -1,10 +1,5 @@
 # airflow
 
-Install `airflow` cli tool:
-```bash
-brew install --cask airflow
-```
-
 Add airflow helm repo:
 ```bash
 helm repo add airflow https://airflow.apache.org
