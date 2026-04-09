@@ -1,5 +1,14 @@
 # airflow
 
+Install postgres:
+```bash
+helm upgrade -i postgres \
+  --namespace airflow \
+  --create-namespace \
+  oci://registry-1.docker.io/cloudpirates/postgres \
+  --set auth.password="postgres"
+```
+
 Add airflow helm repo:
 ```bash
 helm repo add airflow https://airflow.apache.org
@@ -12,7 +21,7 @@ helm upgrade -i airflow airflow/airflow \
   --create-namespace \
   --set postgresql.enabled=false \
   --set apiServer.service.type=LoadBalancer \
-  --set data.metadataConnection.host="airflow-postgresql" \
+  --set data.metadataConnection.host="postgres-postgres" \
   --set executor="CeleryExecutor"
 ```
 
