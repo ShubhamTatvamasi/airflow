@@ -27,6 +27,8 @@ helm upgrade -i airflow airflow/airflow \
 
 Default login: `admin` / `admin`
 
+---
+
 Connect with postgres:
 ```bash
 kubectl -n airflow exec -it postgres-0 -- sh -c \
@@ -34,9 +36,18 @@ kubectl -n airflow exec -it postgres-0 -- sh -c \
 ```
 
 Check users list:
-```bash
+```sql
 select * from ab_user;
 ```
+
+---
+
+Cleanup
+```bash
+helm un airflow postgres
+kubectl delete ns airflow
+```
+
 
 ---
 
