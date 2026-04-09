@@ -6,7 +6,9 @@ helm upgrade -i postgres \
   oci://registry-1.docker.io/cloudpirates/postgres \
   --namespace airflow \
   --create-namespace \
-  --set auth.password="postgres"
+  --set auth.password="postgres" \
+  --wait \
+  --timeout 10m
 ```
 
 Add airflow helm repo:
