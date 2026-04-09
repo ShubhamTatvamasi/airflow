@@ -12,7 +12,8 @@ helm upgrade -i airflow airflow/airflow \
   --create-namespace \
   --set postgresql.enabled=false \
   --set apiServer.service.type=LoadBalancer \
-  --set executor="LocalExecutor,CeleryExecutor,KubernetesExecutor"
+  --set data.metadataConnection.host="airflow-postgresql" \
+  --set executor="CeleryExecutor"
 ```
 
 Default login: `admin` / `admin`
