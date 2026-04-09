@@ -3,9 +3,9 @@
 Install postgres:
 ```bash
 helm upgrade -i postgres \
+  oci://registry-1.docker.io/cloudpirates/postgres \
   --namespace airflow \
   --create-namespace \
-  oci://registry-1.docker.io/cloudpirates/postgres \
   --set auth.password="postgres"
 ```
 
