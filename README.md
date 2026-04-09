@@ -10,7 +10,9 @@ Install airflow:
 helm upgrade -i airflow airflow/airflow \
   --namespace airflow \
   --create-namespace \
-  --set apiServer.service.type=LoadBalancer
+  --set postgresql.enabled=false \
+  --set apiServer.service.type=LoadBalancer \
+  --set executor="LocalExecutor,CeleryExecutor,KubernetesExecutor"
 ```
 
 Default login: `admin` / `admin`
