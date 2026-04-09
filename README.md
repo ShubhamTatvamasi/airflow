@@ -42,15 +42,6 @@ select * from ab_user;
 
 ---
 
-Cleanup
-```bash
-helm un airflow postgres
-kubectl delete ns airflow
-```
-
-
----
-
 Get inside `airflow-api-server` pod:
 ```bash
 kubectl -n airflow \
@@ -60,4 +51,12 @@ kubectl -n airflow \
 List all the DAGs:
 ```bash
 airflow dags list
+```
+
+---
+
+Cleanup
+```bash
+helm un airflow postgres
+kubectl delete ns airflow
 ```
