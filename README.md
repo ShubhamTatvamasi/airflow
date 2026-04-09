@@ -19,7 +19,7 @@ Install airflow:
 helm upgrade -i airflow airflow/airflow \
   --namespace airflow \
   --create-namespace \
-  --set airflowVersion="3.2.0"
+  --set airflowVersion="3.2.0" \
   --set postgresql.enabled=false \
   --set apiServer.service.type=LoadBalancer \
   --set data.metadataConnection.host="postgres" \
