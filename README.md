@@ -21,7 +21,7 @@ helm upgrade -i airflow airflow/airflow \
   --create-namespace \
   --set postgresql.enabled=false \
   --set apiServer.service.type=LoadBalancer \
-  --set data.metadataConnection.host="postgres-postgres" \
+  --set data.metadataConnection.host="postgres" \
   --set executor="CeleryExecutor"
 ```
 
