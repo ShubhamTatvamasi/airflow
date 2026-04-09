@@ -27,6 +27,17 @@ helm upgrade -i airflow airflow/airflow \
 
 Default login: `admin` / `admin`
 
+Connect with postgres:
+```bash
+kubectl -n airflow exec -it postgres-0 -- sh -c \
+  'PGPASSWORD=postgres psql -U postgres'
+```
+
+Check users list:
+```bash
+select * from ab_user;
+```
+
 ---
 
 Get inside `airflow-api-server` pod:
