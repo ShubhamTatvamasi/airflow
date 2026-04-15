@@ -12,17 +12,17 @@ from airflow.decorators import dag, task
 def sample_pipeline():
 
     @task
-def start_task():
+    def start_task():
         print("Starting the pipeline...")
 
 
     @task
-def process_task():
+    def process_task():
         print("Processing data...")
 
 
     @task
-def end_task():
+    def end_task():
         print("Pipeline completed.")
 
 
