@@ -1,7 +1,5 @@
 import pendulum
-from airflow.sdk.dag import dag
-from airflow.sdk.task import task
-
+from airflow.decorators import dag, task
 
 @dag(
     dag_id='sample_pipeline',
@@ -10,6 +8,7 @@ from airflow.sdk.task import task
     catchup=False,
     tags=['example'],
 )
+
 def sample_pipeline():
 
     @task
