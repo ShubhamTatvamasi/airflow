@@ -64,3 +64,11 @@ Cleanup
 helm un airflow postgres
 kubectl delete ns airflow
 ```
+
+---
+
+Add gitea remote repo
+```bash
+git remote add gitea http://10.10.10.8/admin/airflow.git
+```
+
