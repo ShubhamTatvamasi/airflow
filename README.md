@@ -72,3 +72,8 @@ Add gitea remote repo
 git remote add gitea http://10.10.10.8/admin/airflow.git
 ```
 
+Push changes to gitea:
+```bash
+git push gitea main
+```
+
