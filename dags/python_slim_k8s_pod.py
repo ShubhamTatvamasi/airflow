@@ -29,6 +29,7 @@ print("Current time:", datetime.datetime.now())
 
         get_logs=True,
         is_delete_operator_pod=True,
+        container_logs=True,
 
         in_cluster=True,  # True if Airflow is running inside K8s
         termination_grace_period=30,
