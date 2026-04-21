@@ -5,7 +5,7 @@ from datetime import datetime
 with DAG(
     dag_id="python_slim_k8s_pod",
     start_date=datetime(2024, 1, 1),
-    schedule_interval=None,
+    schedule=None,
     catchup=False,
     tags=["kubernetes", "python-slim"],
 ) as dag:
