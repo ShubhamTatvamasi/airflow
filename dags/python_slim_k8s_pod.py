@@ -14,7 +14,7 @@ with DAG(
         task_id="run_python_script",
 
         name="python-slim-pod",
-        namespace="default",  # change if needed
+        namespace="airflow",
 
         image="python:3.14-slim",
 
@@ -31,7 +31,7 @@ print("Current time:", datetime.datetime.now())
         is_delete_operator_pod=True,
         container_logs=True,
 
-        in_cluster=True,  # True if Airflow is running inside K8s
+        in_cluster=True,
         termination_grace_period=30,
     )
 
