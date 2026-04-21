@@ -15,7 +15,7 @@ with DAG(
     build = KubernetesPodOperator(
         task_id="build_image",
         name="rootless-buildkit",
-        namespace="default",
+        namespace="airflow",
 
         image="moby/buildkit:rootless",
 
