@@ -25,7 +25,7 @@ with DAG(
             "--frontend=dockerfile.v0",
 
             # ✅ Use Git context (VERY IMPORTANT)
-            "--opt", "context=http://gitea-http.gitea/admin/airflow.git",
+            "--opt", "context=http://10.10.10.8/admin/airflow.git",
             "--opt", "dockerfile=docker/Dockerfile",
             # "--opt", "subdir=docker",
 
