@@ -16,6 +16,7 @@ with DAG(
         task_id="build_image",
         name="rootless-buildkit",
         namespace="airflow",
+        in_cluster=True,
 
         image="moby/buildkit:rootless",
 
