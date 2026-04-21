@@ -25,7 +25,7 @@ with DAG(
             "--frontend=dockerfile.v0",
 
             # ✅ Use Git context (VERY IMPORTANT)
-            "--opt", "context=http://10.10.10.8/admin/airflow.git",
+            "--opt", "context=http://gitea-http.gitea/admin/airflow.git",
             "--opt", "dockerfile=docker/Dockerfile",
             # "--opt", "subdir=docker",
 
@@ -57,7 +57,7 @@ with DAG(
 
         # ✅ good practice
         # is_delete_operator_pod=True,
-        get_logs=True,
+        get_logs=False,
 
         # ✅ Airflow 3 / K8s stability
         # container_resources=k8s.V1ResourceRequirements(
