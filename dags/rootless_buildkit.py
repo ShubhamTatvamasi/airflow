@@ -56,7 +56,7 @@ with DAG(
         # ],
 
         # ✅ good practice
-        is_delete_operator_pod=True,
+        # is_delete_operator_pod=True,
         get_logs=True,
 
         # ✅ Airflow 3 / K8s stability
