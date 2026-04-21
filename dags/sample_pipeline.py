@@ -15,22 +15,18 @@ def sample_pipeline():
     def start_task():
         print("Starting the pipeline...")
 
-
     @task
     def process_task():
         print("Processing data...")
 
-
     @task
     def end_task():
         print("Pipeline completed.")
-
 
     start = start_task()
     process = process_task()
     end = end_task()
 
     start >> process >> end
-
 
 dag = sample_pipeline()
