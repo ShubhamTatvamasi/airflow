@@ -5,7 +5,7 @@ from datetime import datetime
 from kubernetes.client import models as k8s
 
 with DAG(
-    dag_id="rootless_buildkit",
+    dag_id="buildkit",
     start_date=datetime(2024, 1, 1),
     schedule=None,
     catchup=False,
@@ -14,7 +14,7 @@ with DAG(
 
     build = KubernetesPodOperator(
         task_id="build_image",
-        name="rootless-buildkit",
+        name="buildkit",
         namespace="airflow",
         in_cluster=True,
 
