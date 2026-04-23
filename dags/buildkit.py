@@ -25,7 +25,6 @@ with DAG(
             success_count=0
 
             while [ "$success_count" -lt "$TARGET_SUCCESS" ]; do
-                echo "Attempt... success so far: $success_count/$TARGET_SUCCESS"
 
                 wget -q -T 3 --tries=1 -O /dev/null https://registry-1.docker.io || true
 
