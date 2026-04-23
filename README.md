@@ -1,5 +1,7 @@
 # airflow
 
+https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html
+
 Install postgres:
 ```bash
 helm upgrade -i postgres \
