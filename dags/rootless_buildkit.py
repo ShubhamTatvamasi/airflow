@@ -24,8 +24,7 @@ with DAG(
         arguments=[
             "build",
             "--frontend=dockerfile.v0",
-            "--opt", "context=http://gitea-http.gitea/admin/airflow.git",
-            "--opt", "dockerfile=docker/Dockerfile",
+            "--opt", "context=http://gitea-http.gitea/admin/airflow.git#main:docker",
 
             # ✅ push image
             # "--output",
