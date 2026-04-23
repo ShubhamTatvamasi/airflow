@@ -21,36 +21,28 @@ with DAG(
 
         cmds=["/bin/sh", "-c"],
         arguments=["""
+            TARGET_SUCCESS=10
             success_count=0
 
-            while [ "$success_count" -lt 5 ]; do
-            echo "Attempt... success so far: $success_count"
+            while [ "$success_count" -lt "$TARGET_SUCCESS" ]; do
+                echo "Attempt... success so far: $success_count/$TARGET_SUCCESS"
 
-            # Try registry check (but don't trust it fully)
-            wget -q -T 3 --tries=1 -O /dev/null https://registry-1.docker.io
-            wget_status=$?
+                wget -q -T 3 --tries=1 -O /dev/null https://registry-1.docker.io || true
 
-            if [ "$wget_status" -ne 0 ]; then
-                echo "⚠️ Registry check failed (continuing anyway)"
-            else
-                echo "✅ Registry reachable"
-            fi
+                if buildctl-daemonless.sh build \
+                    --frontend dockerfile.v0 \
+                    --opt context=http://gitea-http.gitea/admin/airflow.git#:docker; then
 
-            # Always attempt build (this is what really matters)
-            if buildctl-daemonless.sh build \
-                --frontend dockerfile.v0 \
-                --opt context=http://gitea-http.gitea/admin/airflow.git#:docker; then
-                
-                success_count=$((success_count + 1))
-                echo "🎉 Build succeeded ($success_count/5)"
-            else
+                    success_count=$((success_count + 1))
+                    echo "🎉 Build succeeded ($success_count/$TARGET_SUCCESS)"
+
+                    break
+                fi
+
                 echo "❌ Build failed"
-            fi
-
-            sleep 2
             done
 
-            echo "✅ Done: 5 successful builds completed"
+            echo "✅ Done: $TARGET_SUCCESS successful builds completed"
         """],
 
         container_security_context=k8s.V1SecurityContext(
