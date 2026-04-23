@@ -1,7 +1,6 @@
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from datetime import datetime
-
 from kubernetes.client import models as k8s
 
 with DAG(
@@ -20,36 +19,18 @@ with DAG(
 
         image="moby/buildkit:latest",
 
-        cmds=["buildctl-daemonless.sh"],
-        arguments=[
-            "build",
-            "--frontend=dockerfile.v0",
-            "--opt", "context=http://gitea-http.gitea/admin/airflow.git#main:docker",
-
-            # ✅ push image
-            # "--output",
-            # "type=image,name=your-dockerhub-username/your-image:latest,push=true",
-        ],
+        cmds=["/bin/sh", "-c"],
+        arguments=["""
+        buildctl-daemonless.sh build \
+          --frontend dockerfile.v0 \
+          --frontend-opt context=https://gitea-http.gitea/admin/airflow.git \
+          --frontend-opt filename=Dockerfile \
+          --local dockerfile=docker
+        """],
 
         container_security_context=k8s.V1SecurityContext(
             privileged=True,
         ),
-
-        # ✅ Docker auth secret
-        # volumes=[
-        #     k8s.V1Volume(
-        #         name="docker-config",
-        #         secret=k8s.V1SecretVolumeSource(
-        #             secret_name="docker-config"
-        #         ),
-        #     )
-        # ],
-        # volume_mounts=[
-        #     k8s.V1VolumeMount(
-        #         name="docker-config",
-        #         mount_path="/root/.docker"
-        #     )
-        # ],
 
         get_logs=True,
         is_delete_operator_pod=False,
