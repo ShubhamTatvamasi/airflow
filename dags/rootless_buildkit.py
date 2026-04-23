@@ -7,7 +7,7 @@ from kubernetes.client import models as k8s
 with DAG(
     dag_id="rootless_buildkit",
     start_date=datetime(2024, 1, 1),
-    schedule=None,  # ✅ Airflow 3 change
+    schedule=None,
     catchup=False,
     tags=["docker", "buildkit"],
 ) as dag:
@@ -18,38 +18,22 @@ with DAG(
         namespace="airflow",
         in_cluster=True,
 
-        image="moby/buildkit:rootless",
+        image="moby/buildkit:latest",
 
         cmds=["buildctl-daemonless.sh"],
         arguments=[
             "build",
             "--frontend=dockerfile.v0",
-
-            # ✅ Use Git context (VERY IMPORTANT)
             "--opt", "context=http://gitea-http.gitea/admin/airflow.git",
             "--opt", "dockerfile=docker/Dockerfile",
-            # "--opt", "subdir=docker",
 
             # ✅ push image
             # "--output",
             # "type=image,name=your-dockerhub-username/your-image:latest,push=true",
         ],
 
-        # ✅ Required for rootless buildkit in many clusters
-        env_vars={
-            "BUILDKITD_FLAGS": "--oci-worker-no-process-sandbox"
-        },
-
-        # ✅ Required for rootless buildkit: seccomp must be Unconfined
-        security_context=k8s.V1PodSecurityContext(
-            run_as_user=1000,
-            run_as_group=1000,
-        ),
         container_security_context=k8s.V1SecurityContext(
-            seccomp_profile=k8s.V1SeccompProfile(type="Unconfined"),
-            run_as_user=1000,
-            run_as_group=1000,
-            capabilities=k8s.V1Capabilities(add=["SYS_ADMIN"]),
+            privileged=True,
         ),
 
         # ✅ Docker auth secret
@@ -68,15 +52,8 @@ with DAG(
         #     )
         # ],
 
-        # ✅ good practice
         get_logs=True,
         is_delete_operator_pod=False,
-
-        # ✅ Airflow 3 / K8s stability
-        # container_resources=k8s.V1ResourceRequirements(
-        #     requests={"cpu": "500m", "memory": "512Mi"},
-        #     limits={"cpu": "1", "memory": "1Gi"},
-        # ),
     )
 
     build
