@@ -49,6 +49,7 @@ with DAG(
             seccomp_profile=k8s.V1SeccompProfile(type="Unconfined"),
             run_as_user=1000,
             run_as_group=1000,
+            capabilities=k8s.V1Capabilities(add=["SYS_ADMIN"]),
         ),
 
         # ✅ Docker auth secret
