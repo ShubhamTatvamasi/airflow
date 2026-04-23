@@ -23,9 +23,8 @@ with DAG(
         arguments=["""
         buildctl-daemonless.sh build \
           --frontend dockerfile.v0 \
-          --frontend-opt context=https://gitea-http.gitea/admin/airflow.git \
-          --frontend-opt filename=Dockerfile \
-          --local dockerfile=docker
+          --opt context=https://gitea-http.gitea/admin/airflow.git \
+          --opt filename=docker/Dockerfile
         """],
 
         container_security_context=k8s.V1SecurityContext(
