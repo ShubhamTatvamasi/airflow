@@ -41,7 +41,7 @@ with DAG(
                 echo "❌ Build $success_count failed"
             done
 
-            echo "✅ Done: $TARGET_SUCCESS successful builds completed"
+            echo "✅ Done: build $success_count completed"
         """],
 
         container_security_context=k8s.V1SecurityContext(
