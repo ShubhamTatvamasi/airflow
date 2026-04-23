@@ -49,7 +49,6 @@ with DAG(
             seccomp_profile=k8s.V1SeccompProfile(type="Unconfined"),
             run_as_user=1000,
             run_as_group=1000,
-            allow_privilege_escalation=False,
         ),
 
         # ✅ Docker auth secret
