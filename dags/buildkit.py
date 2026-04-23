@@ -39,7 +39,7 @@ with DAG(
                     break
                 fi
 
-                echo "❌ Build failed"
+                echo "❌ Build $success_count failed"
             done
 
             echo "✅ Done: $TARGET_SUCCESS successful builds completed"
