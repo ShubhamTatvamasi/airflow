@@ -40,6 +40,18 @@ with DAG(
             "BUILDKITD_FLAGS": "--oci-worker-no-process-sandbox"
         },
 
+        # ✅ Required for rootless buildkit: seccomp must be Unconfined
+        security_context=k8s.V1PodSecurityContext(
+            run_as_user=1000,
+            run_as_group=1000,
+        ),
+        container_security_context=k8s.V1SecurityContext(
+            seccomp_profile=k8s.V1SeccompProfile(type="Unconfined"),
+            run_as_user=1000,
+            run_as_group=1000,
+            allow_privilege_escalation=False,
+        ),
+
         # ✅ Docker auth secret
         # volumes=[
         #     k8s.V1Volume(
