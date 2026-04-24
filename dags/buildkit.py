@@ -8,7 +8,7 @@ from kubernetes.client import models as k8s
     start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     schedule=None,
     catchup=False,
-    tags=["docker", "buildkit"],
+    tags=["docker", "buildkit", "kubernetes", "pod"],
 )
 
 def buildkit():

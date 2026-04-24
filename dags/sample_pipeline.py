@@ -6,7 +6,7 @@ from airflow.sdk import dag, task
     schedule='@daily',
     start_date=datetime(2026, 3, 24, tzinfo=timezone.utc),
     catchup=False,
-    tags=['example'],
+    tags=['example', 'taskflow'],
 )
 
 def sample_pipeline():

@@ -7,7 +7,7 @@ from airflow.sdk import dag
     start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     schedule=None,
     catchup=False,
-    tags=["kubernetes", "python-slim"],
+    tags=["kubernetes", "python-slim", "pod"],
 )
 
 def python_slim_k8s_pod():
