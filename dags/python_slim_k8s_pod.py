@@ -1,10 +1,10 @@
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
-from datetime import datetime
+from datetime import datetime, timezone
 
 with DAG(
     dag_id="python_slim_k8s_pod",
-    start_date=datetime(2024, 1, 1),
+    start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     schedule=None,
     catchup=False,
     tags=["kubernetes", "python-slim"],

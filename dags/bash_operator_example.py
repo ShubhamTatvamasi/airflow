@@ -5,7 +5,7 @@ from airflow.sdk import dag
 @dag(
     dag_id='bash_operator_example',
     schedule='@daily',
-    start_date=datetime(2026, 3, 24, tzinfo=timezone.utc),
+    start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     catchup=False,
     tags=['example'],
 )

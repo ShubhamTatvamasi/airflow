@@ -1,11 +1,11 @@
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
-from datetime import datetime
+from datetime import datetime, timezone
 from kubernetes.client import models as k8s
 
 with DAG(
     dag_id="buildkit",
-    start_date=datetime(2024, 1, 1),
+    start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     schedule=None,
     catchup=False,
     tags=["docker", "buildkit"],
