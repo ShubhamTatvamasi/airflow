@@ -26,6 +26,7 @@ def buildkit():
             success_count=0
 
             while [ "$success_count" -lt "$TARGET_SUCCESS" ]; do
+                success_count=$((success_count + 1))
 
                 wget -q -T 3 --tries=1 -O /dev/null https://registry-1.docker.io || true
 
@@ -33,7 +34,6 @@ def buildkit():
                     --frontend dockerfile.v0 \
                     --opt context=http://gitea-http.gitea/admin/airflow.git#:docker; then
 
-                    success_count=$((success_count + 1))
                     echo "🎉 Build succeeded ($success_count/$TARGET_SUCCESS)"
 
                     break
