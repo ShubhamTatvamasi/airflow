@@ -10,7 +10,6 @@ from kubernetes.client import models as k8s
     catchup=False,
     tags=["docker", "buildkit", "kubernetes", "pod"],
 )
-
 def buildkit():
     build = KubernetesPodOperator(
         task_id="build_image",

@@ -9,7 +9,6 @@ from airflow.sdk import dag
     catchup=False,
     tags=['example', 'bash'],
 )
-
 def bash_operator_example():
     print_date = BashOperator(
         task_id='print_date',

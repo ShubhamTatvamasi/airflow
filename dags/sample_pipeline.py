@@ -8,7 +8,6 @@ from airflow.sdk import dag, task
     catchup=False,
     tags=['example', 'taskflow'],
 )
-
 def sample_pipeline():
 
     @task

@@ -9,7 +9,6 @@ from airflow.sdk import dag
     catchup=False,
     tags=['example', 'postgres', 'read-only'],
 )
-
 def sql_execute_query_example():
     query_airflow_metadata = SQLExecuteQueryOperator(
         task_id='query_airflow_metadata',

@@ -9,7 +9,6 @@ from airflow.sdk import dag
     catchup=False,
     tags=["kubernetes", "python-slim", "pod"],
 )
-
 def python_slim_k8s_pod():
     run_python = KubernetesPodOperator(
         task_id="run_python_script",
