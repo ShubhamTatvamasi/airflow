@@ -4,7 +4,7 @@ from airflow.sdk import dag, task
 @dag(
     dag_id='sample_pipeline',
     schedule='@daily',
-    start_date=datetime(2026, 4, 24, tzinfo='UTC'),
+    start_date=datetime(2026, 3, 24, tzinfo='UTC'),
     catchup=False,
     tags=['example'],
 )
