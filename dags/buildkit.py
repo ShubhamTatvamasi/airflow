@@ -34,15 +34,13 @@ def buildkit():
                     --frontend dockerfile.v0 \
                     --opt context=http://gitea-http.gitea/admin/airflow.git#:docker; then
 
-                    echo "🎉 Build succeeded ($success_count/$TARGET_SUCCESS)"
+                    echo "🎉 Build $success_count succeeded"
 
                     break
                 fi
 
                 echo "❌ Build $success_count failed"
             done
-
-            echo "✅ Done: build $success_count completed"
         """],
 
         container_security_context=k8s.V1SecurityContext(
