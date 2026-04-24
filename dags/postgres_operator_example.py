@@ -14,7 +14,7 @@ def postgres_read_only_example():
     query_airflow_metadata = SQLExecuteQueryOperator(
         task_id='query_airflow_metadata',
         conn_id='postgres_default',
-        sql='SELECT id, dag_id, execution_date, state FROM dag_run ORDER BY execution_date DESC LIMIT 10;',
+        sql='SELECT id, dag_id, logical_date, state FROM dag_run ORDER BY logical_date DESC LIMIT 10;',
     )
 
     return query_airflow_metadata
