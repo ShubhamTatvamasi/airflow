@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from airflow.operators.bash import BashOperator
+from airflow.providers.standard.operators.bash import BashOperator
 from airflow.sdk import dag
 
 @dag(
