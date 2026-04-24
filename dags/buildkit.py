@@ -1,16 +1,17 @@
-from airflow import DAG
-from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from datetime import datetime, timezone
+from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
+from airflow.sdk import dag
 from kubernetes.client import models as k8s
 
-with DAG(
+@dag(
     dag_id="buildkit",
     start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     schedule=None,
     catchup=False,
     tags=["docker", "buildkit"],
-) as dag:
+)
 
+def buildkit():
     build = KubernetesPodOperator(
         task_id="build_image",
         name="buildkit",
@@ -52,4 +53,6 @@ with DAG(
         is_delete_operator_pod=True,
     )
 
-    build
+    return build
+
+dag = buildkit()

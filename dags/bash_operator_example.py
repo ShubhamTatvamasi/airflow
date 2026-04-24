@@ -28,5 +28,4 @@ def bash_operator_example():
 
     print_date >> sleep_task >> completion
 
-
 dag = bash_operator_example()

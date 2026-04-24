@@ -1,15 +1,16 @@
-from airflow import DAG
-from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from datetime import datetime, timezone
+from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
+from airflow.sdk import dag
 
-with DAG(
+@dag(
     dag_id="python_slim_k8s_pod",
     start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     schedule=None,
     catchup=False,
     tags=["kubernetes", "python-slim"],
-) as dag:
+)
 
+def python_slim_k8s_pod():
     run_python = KubernetesPodOperator(
         task_id="run_python_script",
 
@@ -19,13 +20,11 @@ with DAG(
         image="python:3.14-slim",
 
         cmds=["python", "-c"],
-        arguments=[
-            """
-import datetime
-print("Hello from python:slim container")
-print("Current time:", datetime.datetime.now())
-"""
-        ],
+        arguments=["""
+            import datetime
+            print("Hello from python:slim container")
+            print("Current time:", datetime.datetime.now())
+        """],
 
         get_logs=True,
         is_delete_operator_pod=True,
@@ -35,4 +34,6 @@ print("Current time:", datetime.datetime.now())
         termination_grace_period=30,
     )
 
-    run_python
+    return run_python
+
+dag = python_slim_k8s_pod()
