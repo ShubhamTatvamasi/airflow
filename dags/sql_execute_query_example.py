@@ -18,4 +18,4 @@ def sql_execute_query_example():
 
     return query_airflow_metadata
 
-dag = sql_execute_query_example()
+sql_execute_query_example()

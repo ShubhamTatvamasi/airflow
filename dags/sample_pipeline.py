@@ -28,4 +28,4 @@ def sample_pipeline():
 
     start >> process >> end
 
-dag = sample_pipeline()
+sample_pipeline()

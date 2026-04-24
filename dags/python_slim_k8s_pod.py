@@ -35,4 +35,4 @@ def python_slim_k8s_pod():
 
     return run_python
 
-dag = python_slim_k8s_pod()
+python_slim_k8s_pod()

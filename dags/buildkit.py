@@ -52,4 +52,4 @@ def buildkit():
 
     return build
 
-dag = buildkit()
+buildkit()
