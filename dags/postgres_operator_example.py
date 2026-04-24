@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from airflow.providers.postgres import PostgresOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.sdk import dag
 
 @dag(
