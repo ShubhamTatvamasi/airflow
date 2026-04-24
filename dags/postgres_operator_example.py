@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.sdk import dag
 
 @dag(
@@ -11,9 +11,9 @@ from airflow.sdk import dag
 )
 
 def postgres_read_only_example():
-    query_airflow_metadata = PostgresOperator(
+    query_airflow_metadata = SQLExecuteQueryOperator(
         task_id='query_airflow_metadata',
-        postgres_conn_id='postgres_default',
+        conn_id='postgres_default',
         sql='SELECT id, dag_id, execution_date, state FROM dag_run ORDER BY execution_date DESC LIMIT 10;',
     )
 
