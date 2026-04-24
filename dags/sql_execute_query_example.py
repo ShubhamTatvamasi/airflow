@@ -3,14 +3,14 @@ from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.sdk import dag
 
 @dag(
-    dag_id='postgres_read_only_example',
+    dag_id='sql_execute_query_example',
     schedule=None,
     start_date=datetime(2026, 3, 24, tzinfo=timezone.utc),
     catchup=False,
     tags=['example', 'postgres', 'read-only'],
 )
 
-def postgres_read_only_example():
+def sql_execute_query_example():
     query_airflow_metadata = SQLExecuteQueryOperator(
         task_id='query_airflow_metadata',
         conn_id='postgres_default',
@@ -19,4 +19,4 @@ def postgres_read_only_example():
 
     return query_airflow_metadata
 
-dag = postgres_read_only_example()
+dag = sql_execute_query_example()
