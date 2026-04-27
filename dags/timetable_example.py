@@ -6,7 +6,7 @@ import pendulum
 @dag(
     dag_id='timetable_example',
     # Run at 9 AM UTC on weekdays only (Mon-Fri)
-    timetable=CronDataIntervalTimetable("0 9 * * 1-5", timezone="UTC"),
+    schedule=CronDataIntervalTimetable("0 9 * * 1-5", timezone="UTC"),
     start_date=pendulum.datetime(2026, 3, 23, tz="UTC"),
     catchup=False,
     tags=['example', 'timetable'],
