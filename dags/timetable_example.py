@@ -1,13 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from airflow.sdk import dag, task
 from airflow.timetables.interval import CronDataIntervalTimetable
-import pendulum
 
 @dag(
     dag_id='timetable_example',
     # Run at 9 AM UTC on weekdays only (Mon-Fri)
     schedule=CronDataIntervalTimetable("0 9 * * 1-5", timezone="UTC"),
-    start_date=pendulum.datetime(2026, 3, 23, tz="UTC"),
+    start_date=datetime(2026, 3, 23, tzinfo=timezone.utc),
     catchup=False,
     tags=['example', 'timetable'],
 )
