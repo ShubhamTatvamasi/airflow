@@ -1,6 +1,5 @@
 from datetime import datetime, timezone
-from airflow.sdk import dag, task
-from airflow.models import Variable
+from airflow.sdk import dag, task, Variable
 
 @dag(
     dag_id='variable_example',
