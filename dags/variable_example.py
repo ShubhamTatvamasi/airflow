@@ -12,7 +12,7 @@ def variable_example():
 
     @task
     def print_environment():
-        environment = Variable.get("environment")
+        environment = Variable.get("my_environment")
         print(f"ENVIRONMENT: {environment}")
 
     print_environment()
