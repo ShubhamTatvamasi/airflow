@@ -1,6 +1,5 @@
 from datetime import datetime, timezone
-from airflow.sdk import dag, task
-from airflow.utils.task_group import TaskGroup
+from airflow.sdk import dag, task, TaskGroup
 
 @dag(
     dag_id='task_group_example',
