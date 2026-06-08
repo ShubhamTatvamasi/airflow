@@ -71,7 +71,9 @@ kubectl delete ns airflow
 
 Add gitea remote repo
 ```bash
-git remote add gitea http://10.10.10.8/admin/airflow.git
+git remote add gitea http://10.10.10.16/admin/airflow.git
+
+git remote add gitea https://gitea.k8s.shubhamtatvamasi.com/admin/airflow.git
 ```
 
 Push changes to gitea:
