@@ -8,7 +8,7 @@ from airflow.sdk import dag
 from kubernetes.client import models as k8s
 
 # Harbor connection (host + credentials) and target project.
-HARBOR_CONN_ID = "MY_HARBOR"
+HARBOR_CONN_ID = "my_harbor"
 HARBOR_PROJECT = "airflow"
 IMAGE_NAME = "app"
 IMAGE_TAG = "latest"
@@ -16,7 +16,7 @@ IMAGE_TAG = "latest"
 
 def _harbor_config():
     """Resolve the Harbor registry host, image ref and a docker auth config
-    from the MY_HARBOR connection at parse time."""
+    from the my_harbor connection at parse time."""
     conn = BaseHook.get_connection(HARBOR_CONN_ID)
 
     # Registry host, e.g. "harbor.example.com" (strip any scheme).
