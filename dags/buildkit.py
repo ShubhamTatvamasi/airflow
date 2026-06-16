@@ -63,26 +63,10 @@ def buildkit():
             mkdir -p /tmp/.docker
             printf '%s' '{docker_config}' > /tmp/.docker/config.json
 
-            TARGET_SUCCESS=10
-            success_count=0
-
-            while [ "$success_count" -lt "$TARGET_SUCCESS" ]; do
-                success_count=$((success_count + 1))
-
-                wget -q -T 3 --tries=1 -O /dev/null https://registry-1.docker.io || true
-
-                if buildctl-daemonless.sh build \
-                    --frontend dockerfile.v0 \
-                    --opt context=https://github.com/ShubhamTatvamasi/airflow.git#:docker \
-                    --output type=image,name={image_ref},push=true; then
-
-                    echo "🎉 Build $success_count succeeded and pushed {image_ref}"
-
-                    break
-                fi
-
-                echo "❌ Build $success_count failed"
-            done
+            buildctl-daemonless.sh build \
+                --frontend dockerfile.v0 \
+                --opt context=https://github.com/ShubhamTatvamasi/airflow.git#:docker \
+                --output type=image,name={image_ref},push=true
         """],
 
         container_security_context=k8s.V1SecurityContext(
