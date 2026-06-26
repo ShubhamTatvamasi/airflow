@@ -21,8 +21,10 @@ def python_slim_k8s_pod():
         cmds=["python", "-c"],
         arguments=["""
             import datetime
+            import time
             print("Hello from python:slim container")
             print("Current time:", datetime.datetime.now())
+            time.sleep(60)
         """],
 
         get_logs=True,
