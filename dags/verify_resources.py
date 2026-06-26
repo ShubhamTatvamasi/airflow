@@ -19,8 +19,8 @@ def verify_resources():
         cmds=["sleep"],
         arguments=["60"],
         container_resources=k8s.V1ResourceRequirements(
-            requests={"memory": "512Mi", "cpu": "250m"},
-            limits={"memory": "2Gi", "cpu": "1"},
+            requests={"memory": "256Mi", "cpu": "100m"},
+            limits={"memory": "512Mi", "cpu": "500m"},
         ),
         get_logs=True,
         is_delete_operator_pod=True,
