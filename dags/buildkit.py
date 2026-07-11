@@ -49,7 +49,6 @@ def buildkit():
     build = KubernetesPodOperator(
         task_id="build_image",
         name="buildkit",
-        namespace="airflow",
         in_cluster=True,
 
         image="moby/buildkit:latest",

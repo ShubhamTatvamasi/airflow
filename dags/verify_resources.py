@@ -14,7 +14,6 @@ def verify_resources():
     KubernetesPodOperator(
         task_id="verify",
         name="verify-resources-pod",
-        namespace="airflow",
         image="python:3.14-slim",
         cmds=["sleep"],
         arguments=["60"],

@@ -57,7 +57,6 @@ def k8s_pod_custom_resources():
     light_task = KubernetesPodOperator(
         task_id="light_task",
         name="light-pod",
-        namespace="airflow",
         image="python:3.14-slim",
         cmds=["python", "-c"],
         arguments=[PRINT_RESOURCES + '\nprint("\\n--- light_task done ---")'],
@@ -109,7 +108,6 @@ def k8s_pod_custom_resources():
     heavy_task = KubernetesPodOperator(
         task_id="heavy_task",
         name="heavy-pod",
-        namespace="airflow",
         image="python:3.14-slim",
         cmds=["python", "-c"],
         arguments=[PRINT_RESOURCES + '\nprint("\\n--- heavy_task done ---")'],

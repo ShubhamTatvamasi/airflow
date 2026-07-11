@@ -14,7 +14,6 @@ def python_slim_k8s_pod():
         task_id="run_python_script",
 
         name="python-slim-pod",
-        namespace="airflow",
 
         image="python:3.14-slim",
 
