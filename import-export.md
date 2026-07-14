@@ -9,12 +9,12 @@ airflow db check
 
 Import variables:
 ```bash
-airflow variables import variables.json
+airflow variables import variables.yaml
 ```
 
 Import connections:
 ```bash
-airflow connections import --overwrite connections.json
+airflow connections import --overwrite connections.yaml
 ```
 
 ### Export
@@ -22,11 +22,11 @@ airflow connections import --overwrite connections.json
 
 Export variables:
 ```bash
-airflow variables export variables.json
+airflow variables export variables.yaml
 ```
 
 Export connections:
 ```bash
-airflow connections export connections.json
+airflow connections export connections.yaml
 ```
 
