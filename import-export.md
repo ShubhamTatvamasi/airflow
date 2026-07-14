@@ -14,7 +14,7 @@ airflow variables import variables.json
 
 Import connections:
 ```bash
-airflow connections import connections.json
+airflow connections import --overwrite connections.json
 ```
 
 ### Export
