@@ -30,3 +30,9 @@ Export connections:
 airflow connections export connections.yaml
 ```
 
+---
+
+Convert json to yaml
+```bash
+cat variables.json | yq -P > variables.yaml
+```
