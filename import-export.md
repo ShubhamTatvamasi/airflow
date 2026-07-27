@@ -1,5 +1,10 @@
 # Variables and Connections
 
+get inside airflow instance:
+```bash
+kubectl exec -it deploy/airflow-scheduler -- bash
+```
+
 Check Database Connection:
 ```bash
 airflow db check
