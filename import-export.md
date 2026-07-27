@@ -36,3 +36,17 @@ Convert json to yaml
 ```bash
 cat variables.json | yq -P > variables.yaml
 ```
+
+---
+
+### Export Airflow 2
+
+Export connections:
+```bash
+airflow connections export \
+  --file-format yaml \
+  connections.yaml
+```
+
+
+
