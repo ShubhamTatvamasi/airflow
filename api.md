@@ -11,25 +11,6 @@ export AIRFLOW_ACCESS_TOKEN=$(curl -sS \
   }' | jq -r '.access_token')
 ```
 
-Check the token:
-```bash
-echo $AIRFLOW_ACCESS_TOKEN
-```
-
-Check token details:
-```
-python3 - << EOF
-import os, json, base64
-
-token = os.environ["AIRFLOW_ACCESS_TOKEN"]
-payload = token.split(".")[1]
-payload += "=" * (-len(payload) % 4)
-print(json.dumps(json.loads(base64.urlsafe_b64decode(payload)), indent=2))
-EOF
-```
-
-
-
 Trigger the DAG:
 ```bash
 curl -sS -X POST \
@@ -39,4 +20,39 @@ curl -sS -X POST \
   -d "{
     \"logical_date\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\"
   }" | jq
+```
+
+---
+
+Check the token:
+```bash
+echo $AIRFLOW_ACCESS_TOKEN
+```
+
+Check token details:
+```
+python3 - << EOF
+import os
+import json
+import base64
+from datetime import datetime
+
+token = os.environ["AIRFLOW_ACCESS_TOKEN"]
+
+payload = token.split(".")[1]
+payload += "=" * (-len(payload) % 4)
+claims = json.loads(base64.urlsafe_b64decode(payload))
+
+exp = claims["exp"]
+now = datetime.now().timestamp()
+remaining = max(0, int(exp - now))
+
+hours, remainder = divmod(remaining, 3600)
+minutes, seconds = divmod(remainder, 60)
+
+print(json.dumps(claims, indent=2))
+print()
+print(f"Expires at : {datetime.fromtimestamp(exp)}")
+print(f"Time left  : {hours}h {minutes}m {seconds}s")
+EOF
 ```
