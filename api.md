@@ -11,6 +11,11 @@ AIRFLOW_ACCESS_TOKEN=$(curl -sS \
   }' | jq -r '.access_token')
 ```
 
+Check the token:
+```bash
+echo $AIRFLOW_ACCESS_TOKEN
+```
+
 Trigger the DAG:
 ```bash
 curl -sS -X POST \
