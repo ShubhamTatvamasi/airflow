@@ -18,14 +18,12 @@ echo $AIRFLOW_ACCESS_TOKEN
 
 ```
 python3 - << EOF
-import os, json, base64, datetime
+import os, json, base64
 
 token = os.environ["AIRFLOW_ACCESS_TOKEN"]
 payload = token.split(".")[1]
 payload += "=" * (-len(payload) % 4)
-claims = json.loads(base64.urlsafe_b64decode(payload))
-print(json.dumps(claims, indent=2))
-print("Expires:", datetime.datetime.fromtimestamp(claims["exp"]))
+print(json.dumps(json.loads(base64.urlsafe_b64decode(payload)), indent=2))
 EOF
 ```
 
