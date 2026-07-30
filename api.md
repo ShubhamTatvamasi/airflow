@@ -10,6 +10,7 @@ export AIRFLOW_ACCESS_TOKEN=$(curl -sS \
     "password": "admin"
   }' | jq -r '.access_token')
 ```
+> validity 24 hours:
 
 Trigger the DAG:
 ```bash
