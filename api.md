@@ -2,7 +2,7 @@
 
 Generate Airflow Access Token:
 ```bash
-AIRFLOW_ACCESS_TOKEN=$(curl -s \
+AIRFLOW_ACCESS_TOKEN=$(curl -sS \
   https://airflow.k8s.shubhamtatvamasi.com/auth/token \
   -H "Content-Type: application/json" \
   -d '{
