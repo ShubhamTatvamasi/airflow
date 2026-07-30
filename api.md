@@ -11,3 +11,13 @@ AIRFLOW_ACCESS_TOKEN=$(curl --silent \
   }' | jq -r '.access_token')
 ```
 
+Trigger the DAG:
+```bash
+curl -sS -X POST \
+  https://airflow.k8s.shubhamtatvamasi.com/api/v2/dags/bash_operator_example/dagRuns \
+  -H "Authorization: Bearer $AIRFLOW_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"logical_date\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\"
+  }" | jq
+```
