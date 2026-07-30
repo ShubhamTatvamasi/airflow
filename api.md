@@ -16,6 +16,7 @@ Check the token:
 echo $AIRFLOW_ACCESS_TOKEN
 ```
 
+Check token details:
 ```
 python3 - << EOF
 import os, json, base64
