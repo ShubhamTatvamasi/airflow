@@ -14,8 +14,10 @@ export AIRFLOW_ACCESS_TOKEN=$(curl -sS \
 
 Trigger the DAG:
 ```bash
+AIRFLOW_DAG=bash_operator_example
+
 curl -sS -X POST \
-  https://airflow.k8s.shubhamtatvamasi.com/api/v2/dags/bash_operator_example/dagRuns \
+  https://airflow.k8s.shubhamtatvamasi.com/api/v2/dags/$AIRFLOW_DAG/dagRuns \
   -H "Authorization: Bearer $AIRFLOW_ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d "{
